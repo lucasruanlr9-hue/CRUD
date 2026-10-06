@@ -56,17 +56,42 @@ enviar.addEventListener("click", () => {
 })
 
 //=========Excluir========================================
-
+let idExiste = NaN
 editar.addEventListener("click", () =>{
 
     let pesquisaID = id.value
     let existe = lista.find(item => item.id == pesquisaID)
-    
+    idExiste = lista.findIndex(item => item.id == pesquisaID)
+
     if(existe){
-        window.alert(pesquisaID)
+        // window.alert(pesquisaID)
         editavel.value = existe.nome
-        editavel.disabled = true
+        // editavel.disabled = true
     }else{
         window.alert("id invalido")
     }
+})
+
+//========Editar============================================
+
+atualizar.addEventListener("click", ()=>{
+    // window.alert(idExiste)
+    if(idExiste >= 0){
+        // window.alert(lista[idExiste].nome)
+        lista[idExiste].nome = editavel.value
+    }else{
+        window.alert("Selecione um usuario")
+    }
+    update()
+})
+
+//=======Apagar============================================
+
+apagar.addEventListener("click", ()=>{
+    if( idExiste >= 0){
+        lista.splice(idExiste,1)
+    }else{
+        window.alert("Selecione um usuario")
+    }
+    update()
 })
