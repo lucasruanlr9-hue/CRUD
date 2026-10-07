@@ -14,11 +14,21 @@ let resultado = document.getElementById("resultado")
 
 //==========lsita=========================================
 
-let lista = [
-    {id:1, nome:"Lucas"},
-    {id:3, nome:"Ruan"},
-    {id:4, nome:"Sheyaro"}
-]
+let lista = []
+
+let arquivoLocal = JSON.parse(localStorage.getItem("lista"))
+if(arquivoLocal){
+    // window.alert("existe")
+    lista = JSON.parse(localStorage.getItem("lista"))
+}else{
+    // window.alert("Não existe")
+        lista = [
+        {id:1, nome:"Lucas"},
+        {id:3, nome:"Ruan"},
+        {id:4, nome:"Sheyaro"}
+    ]
+}
+
 
 //===========atualizar======================================
 
@@ -29,6 +39,8 @@ function update(){
         p.textContent = itens.id + " - " + itens.nome
         resultado.appendChild(p)
     })
+
+    localStorage.setItem("lista", JSON.stringify(lista))
 }
 
 update()
